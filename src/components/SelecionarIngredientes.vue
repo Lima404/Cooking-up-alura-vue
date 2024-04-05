@@ -26,12 +26,15 @@
 
 <script lang="ts">
 
-import { obterCategorias } from '../http/index';
-import type ICategoria from '../interfaces/ICategoria';
-import BotaoPrincipal from './BotaoPrincipal.vue';
-import CardCategoria from './CardCategoria.vue';
+  import { obterCategorias } from '../http/index';
+  import type ICategoria from '../interfaces/ICategoria';
+  import BotaoPrincipal from './BotaoPrincipal.vue';
+  import CardCategoria from './CardCategoria.vue';
 
     export default {
+
+      name: 'SelecionarIngredientes',
+
       data() {
           return {
             categorias: [] as ICategoria[]

@@ -19,6 +19,7 @@
 </template>
 
 <script lang="ts">
+import type { PropType } from 'vue';
 import IngredienteSelecionavel from './IngredienteSelecionavel.vue';
 import Tag from './Tag.vue';
 
