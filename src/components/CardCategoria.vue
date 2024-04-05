@@ -8,20 +8,21 @@
 
         <ul class="categoria__ingredientes">
             <li v-for="ingrediente in categoria.ingredientes" :key="ingrediente">
-                <Tag :texto="ingrediente" />
+                <IngredienteSelecionavel :ingrediente="ingrediente"/>
             </li>
         </ul>
     </article>
 </template>
 
 <script lang="ts">
+import IngredienteSelecionavel from './IngredienteSelecionavel.vue';
 import Tag from './Tag.vue';
 
     export default {
         props: {
                categoria: { type: Object as PropType<ICategoria>, required: true }
         },
-        components: { Tag }
+        components: { Tag, IngredienteSelecionavel }
     }
 </script>
 
