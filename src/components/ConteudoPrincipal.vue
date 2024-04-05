@@ -1,38 +1,53 @@
 <template>
-    <main class="conteudo-principal">
-        <section>
-            <span class="subtitulo-lg sua-lista-texto">
-            Sua lista:
-            </span>
+  <main class="conteudo-principal">
+    <SuaLista :ingredientes="ingredientes" />
 
-            <ul v-if="ingredientes.length" class="ingredientes-sua-lista">
-              <li v-for="ingrediente in ingredientes" :key="ingrediente">
-                <Tag :texto="ingrediente" :ativa="false" />
-              </li>
-            </ul>
+    <SelecionarIngredientes v-if= " conteudo === 'SelecionarIngredientes' "
+      @adicionar-ingrediente="adcionarIngrediente"
+      @remover-ingrediente="removerIngrediente"
+      @buscar-receitas="navegar('MostrarReceitas')"
+    />
 
-            <p v-else class="paragrafo lista-vazia">
-              <img src="../assets/imagens-main/images/icones/lista-vazia.svg" alt="Ícone de pesquisa">
-              Sua lista está vazia, selecione ingredientes para iniciar.
-            </p>
-        </section>
+    <MostrarReceitas 
+      v-else-if=" conteudo === 'MostrarReceitas'"
+      @editar-receitas="navegar('SelecionarIngredientes')"
+    />
 
-        <SelecionarIngredientes />
-    </main>
+  </main>
 </template>
 
 <script lang="ts">
-    import SelecionarIngredientes from './SelecionarIngredientes.vue';
-    import Tag from './Tag.vue';
-    
-    export default {
-        data() {
-            return {
-                ingredientes: ['Alho', 'Manteiga', 'Orégano']
-            };
-        },
-        components: { SelecionarIngredientes, Tag }
+
+import MostrarReceitas from './MostrarReceitas.vue';
+import SelecionarIngredientes from './SelecionarIngredientes.vue';
+import SuaLista from './SuaLista.vue';
+import Tag from './Tag.vue';
+
+type Pagina = 'SelecionarIngredientes' | 'MostrarReceitas'
+
+export default {
+
+  data() {
+    return {
+      ingredientes: [] as String[],
+      conteudo: 'SelecionarIngredientes' as Pagina
+    };
+  },
+
+  components: { SelecionarIngredientes, Tag, SuaLista , MostrarReceitas },
+
+  methods: {
+    adcionarIngrediente(ingrediente: string) {
+      this.ingredientes.push(ingrediente)
+    },
+    removerIngrediente(ingrediente: string) {
+      this.ingredientes = this.ingredientes.filter(iLista => ingrediente !== iLista);
+    },
+    navegar(pagina: Pagina) {
+      this.conteudo = pagina
     }
+  }
+}
 </script>
 
 <style scoped>
@@ -61,8 +76,6 @@
   gap: 1rem 1.5rem;
   flex-wrap: wrap;
 }
-
-
 
 .lista-vazia {
   display: flex;
