@@ -1,7 +1,9 @@
 <template>
     <header class="banner">
         <div class="apresentacao">
-            <img src="../assets/imagens-main/images/logo.svg" alt="Logo do Cookin' Up" class="logo">
+            <!-- <img src="../assets/imagens-main/images/logo.svg" alt="Logo do Cookin' Up" class="logo"> -->
+
+            <h1 class="cabecalho-lg">Sig-<span class="texto-verde">Receita</span></h1>
 
             <p class="cabecalho-lg frase-cabecalho">
                 <span class="texto-verde">Um banquete de ideias para</span>
@@ -33,6 +35,10 @@
       justify-content: space-between;
       align-items: center;
       column-gap: 3.25rem;
+    }
+
+    h1 {
+      margin-bottom: 10%;
     }
     
     .logo {
